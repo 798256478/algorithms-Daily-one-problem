@@ -29,7 +29,7 @@ echo seq_sch($arr1, 47);
 
 echo "<br>";
 /**
-* 二分查找，要求数组已经排好顺序
+* 二分查找(递归)，要求数组已经排好顺序
 * @param $array 数组
 * @param $low   数组起始元素下标
 * @param $high  数组末尾元素下标
@@ -54,5 +54,30 @@ function bin_sch($array, $low, $high, $k)
 
 $arr2 = array(5, 9, 15, 25, 34, 47, 55, 76);
 echo bin_sch($arr2, 0, 7, 47);
+echo '<br>';
+/**
+* 二分查找递归(非递归)，要求数组已经排好顺序
+* @param $array 数组
+* @param $low   数组起始元素下标
+* @param $high  数组末尾元素下标
+* @param $k     要查找的元素
+* @return mixed 成功返回数组元素下标，失败返回-1
+*/
+function _bin_sch($array, $low, $high, $k)
+{
+	while($low <= $high){
+		$mid = intval(($low + $high)/2);
+		if($k == $array[$mid]){
+			return $mid;
+		} elseif($k < $array[$mid]){
+			$high = $mid - 1;
+		} else {
+			$low = $mid + 1;
+		}
+	}
+	return false;
+}
 
+$arr3 = array(5, 9, 15, 25, 34, 47, 55, 76);
+echo _bin_sch($arr3, 0, 7, 47);
 ?>
